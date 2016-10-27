@@ -78,3 +78,6 @@ while 1:
     start_new_thread(clientthread ,(conn,))
 
 s.close()
+
+# %tb
+# https://ipython.org/ipython-doc/3/interactive/magics.html 
