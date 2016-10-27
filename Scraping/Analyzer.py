@@ -1,3 +1,6 @@
+# sudo pip install https://github.com/matplotlib/basemap/archive/master.zip
+# conda create -p bm_test python matplotlib basemap ipython 
+
 #!unzip word2vecModel.zip
 
 
