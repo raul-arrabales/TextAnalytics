@@ -2,7 +2,7 @@ import scrapy
 
 
 class QuotesSpider(scrapy.Spider):
-    name = "quotes"
+    name = "quotes2"
     start_urls = [
         'http://quotes.toscrape.com/page/1/',
         'http://quotes.toscrape.com/page/2/',
@@ -15,3 +15,5 @@ class QuotesSpider(scrapy.Spider):
                 'author': quote.css('span small::text').extract_first(),
                 'tags': quote.css('div.tags a.tag::text').extract(),
             }
+
+#  scrapy crawl quotes2 -o quotes.json
