@@ -43,6 +43,13 @@ curl localhost:9200/indexP/_search?pretty
 curl -XGET localhost:9200/indexP/test/_search
 curl -XGET localhost:9200/indexP/test/id1
 
+# Free text search
+curl -XPOST "http://localhost:9200/indexP/test" -d
+ '{
+   "gender": "m"
+  }'
+  
+
 # Delete the index
 curl -XDELETE localhost:9200/indexP
 
