@@ -38,5 +38,12 @@ curl -XPOST localhost:9200/indexP/test -d
     "gender": "m"
   }'
 
+# Quering
+curl localhost:9200/indexP/_search?pretty
+curl -XGET localhost:9200/indexP/test/_search
+curl -XGET localhost:9200/indexP/test/id1
+
+# Delete the index
+curl -XDELETE localhost:9200/indexP
 
 
