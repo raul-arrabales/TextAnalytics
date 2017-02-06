@@ -14,7 +14,29 @@ curl -XPUT localhost:9200/test -d
      "number_of_replicas": 0 
      }
   }'
+  
+curl -XPUT localhost:9200/test -d 
+ '{
+   "settings": {
+     "number_of_shards": 3,
+     "number_of_replicas": 2 
+     }
+  }'
    
    
+# Loading new data with PUT
+curl -XPUT localhost:9200/indexP/test/id1 -d 
+ '{
+    "name": "raul",
+    "gender": "m"
+  }'
 
-   
+# Loading new data with POST
+curl -XPOST localhost:9200/indexP/test -d 
+ '{
+    "name": "raul",
+    "gender": "m"
+  }'
+
+
+
