@@ -90,17 +90,70 @@ curl -XPOST 'localhost:9200/cliente/external/_bulk?pretty&pretty' -H 'Content-Ty
 {"doc": { "name": "New Name for 1" } }
 {"delete":{"_id":"2"}}'
 
-# Generating data with www.json-generator.com
+# Generating data with www.json-generator.com (accounts.json file with 1000 records)
 
 curl -XPOST 'localhost:9200/bank/account/_bulk?pretty&refresh' --data-binary "@accounts.json"&pretty' 
   -H 'Content-Type: application/json' -d'
     curl \u0027localhost:9200/_cat/indices?v\u0027'
 
-
+# Check 1000 records in bank index.
 curl -XGET 'localhost:9200/_cat/indices?v&pretty'
 
+# Using the search API
+curl -XGET 'localhost:9200/bank/_search?q=*&sort=account_number:asc&pretty&pretty'
 
+curl -XGET 'localhost:9200/bank/_search?pretty' -H 'Content-Type: application/json' -d'
+{
+  "query": { "match_all": {} },
+  "sort": [
+    { "account_number": "asc" }
+  ]
+}'
+ 
+curl -XGET 'localhost:9200/bank/_search?pretty' -H 'Content-Type: application/json' -d'
+{
+  "query": { "match_all": {} },
+  "_source": ["account_number", "balance"]
+}'
 
+curl -XGET 'localhost:9200/bank/_search?pretty' -H 'Content-Type: application/json' -d'
+{
+  "query": { "match_phrase": { "address": "mill lane" } }
+}'
+
+# Filters
+curl -XGET 'localhost:9200/bank/_search?pretty' -H 'Content-Type: application/json' -d'
+{
+  "query": {
+    "bool": {
+      "must": { "match_all": {} },
+      "filter": {
+        "range": {
+          "balance": {
+            "gte": 20000,
+            "lte": 30000
+          }
+        }
+      }
+    }
+  }
+}'
+
+# Aggregations
+
+curl -XGET 'localhost:9200/bank/_search?pretty' -H 'Content-Type: application/json' -d'
+{
+  "size": 0,
+  "aggs": {
+    "group_by_state": {
+      "terms": {
+        "field": "state.keyword"
+      }
+    }
+  }
+}'
+
+ 
 # -------------------------------------------
 
 # New index test with settings
