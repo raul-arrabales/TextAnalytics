@@ -47,7 +47,28 @@ bin/post -c ColeccionNube docs/
 # Browse and query collection in the GUI
 # http://127.0.1.1:7574/solr/#/ColeccionNube/query 
 
+# Quering with curl
+curl "http://localhost:8983/solr/ColeccionNube/select?indent=on&q=raul&wt=json"
+curl "http://localhost:8983/solr/ColeccionNube/select?indent=on&q=solr&wt=json"
+
+# Phrase search
+curl "http://localhost:8983/solr/ColeccionNube/select?wt=json&indent=true&q=\"CAS+latency\""
+curl "http://localhost:8983/solr/ColeccionNube/select?wt=json&indent=true&q=\"Apache+license\""
+
 # Indexing other types of files: http://lucene.apache.org/solr/quickstart.html
+
+# Check collection status
+bin/solr healthcheck -c ColeccionNube
+
+# Deleting
+bin/post -c ColeccionNube -d "<delete><id>home/array/Downloads/solr-6.4.1/docs/solr-core/org/apache/solr/update/processor/UpdateRequestProcessor.html</id></delete>"
+
+
+# Clean up
+bin/solr stop -all 
+rm -Rf example/cloud/ 
+
+
 
 
 
