@@ -11,5 +11,10 @@ sudo ./install_solr_service.sh ../../solr-6.4.1.zip
 # Browser to Solr admin
 # http://localhost:8983/solr/#/ 
 
+# Starting and stopping service
+sudo /etc/init.d/solr stop
+sudo /etc/init.d/solr start
+
+
 
 
