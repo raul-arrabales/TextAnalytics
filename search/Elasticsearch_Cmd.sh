@@ -1,3 +1,7 @@
+# Install and start
+bin/elasticsearch 
+
+curl http://localhost:9200/
 
 # Get indices
 curl -X GET localhost:9200
