@@ -2,6 +2,13 @@
 # ./elasticsearch -Ecluster.name=my_cluster_name -Enode.name=my_node_name
 bin/elasticsearch 
 
+# Get status
+# Get back stats for merge and refresh only for all indices
+curl 'localhost:9200/_stats/merge,refresh'
+# Get back stats for type1 and type2 documents for the my_index index
+curl 'localhost:9200/my_index/_stats/indexing?types=type1,type2
+
+
 curl http://localhost:9200/
 
 # Get indices
