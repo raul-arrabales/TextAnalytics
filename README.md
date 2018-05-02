@@ -4,6 +4,7 @@ Text Analytics Examples using different libraries:
 - nltk (python lib for natural language processing). 
 - Bag of Words meets Bag of Popcorn (R version of the Kaggle NLP tutorial).
 - search (lucene, solr and elasticsearch demos).
+- Knime (KNIME workflows for text analytics). 
 
 
 
